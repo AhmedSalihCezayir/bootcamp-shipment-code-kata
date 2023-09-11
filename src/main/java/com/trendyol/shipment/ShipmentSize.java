@@ -7,17 +7,12 @@ public enum ShipmentSize {
     LARGE,
     X_LARGE;
 
-    public ShipmentSize getNextBiggerSize() {
-        switch (this) {
-            case SMALL:
-                return MEDIUM;
-            case MEDIUM:
-                return LARGE;
-            case LARGE:
-            case X_LARGE:
-                return X_LARGE;
-            default:
-                throw new IllegalArgumentException("Invalid ShipmentSize: " + this);
-        }
+    private static final ShipmentSize[] enumValues = values().clone();
+
+    public ShipmentSize next() {
+        boolean isBiggest = this.ordinal() == enumValues.length - 1;
+        int nextEnumIndex = isBiggest ? this.ordinal() : this.ordinal() + 1;
+
+        return enumValues[nextEnumIndex];
     }
 }

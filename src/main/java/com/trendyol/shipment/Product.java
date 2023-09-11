@@ -1,6 +1,6 @@
 package com.trendyol.shipment;
 
-public class Product {
+public class Product implements Comparable<Product> {
 
     private ShipmentSize size;
 
@@ -16,5 +16,10 @@ public class Product {
 
     public void setSize(ShipmentSize size) {
         this.size = size;
+    }
+
+    @Override
+    public int compareTo(Product otherProduct) {
+        return size.compareTo(otherProduct.getSize());
     }
 }
