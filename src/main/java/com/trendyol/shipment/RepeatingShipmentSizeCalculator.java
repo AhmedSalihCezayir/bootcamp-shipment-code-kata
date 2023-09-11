@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RepeatingShipmentSizeCalculator implements ShipmentSizeCalculator {
-    private final Integer THRESHOLD = 3;
+    private final Integer PRODUCT_SIZE_REPEAT_THRESHOLD = 3;
 
     @Override
     public ShipmentSize calculate(List<Product> products) {
@@ -13,7 +13,7 @@ public class RepeatingShipmentSizeCalculator implements ShipmentSizeCalculator {
 
         Map.Entry<ShipmentSize, Long> shipmentSizeAboveThreshold =
                 frequencyMap.entrySet().stream()
-                        .filter(entry -> entry.getValue() >= THRESHOLD).findFirst().orElse(null);
+                        .filter(entry -> entry.getValue() >= PRODUCT_SIZE_REPEAT_THRESHOLD).findFirst().orElse(null);
 
         return shipmentSizeAboveThreshold != null ? shipmentSizeAboveThreshold.getKey().next() : getBiggestProductSize(products);
     }

@@ -11,6 +11,7 @@ public enum ShipmentSize {
 
     public ShipmentSize next() {
         boolean isBiggest = this.ordinal() == enumValues.length - 1;
+        // For biggest enum, just return itself
         int nextEnumIndex = isBiggest ? this.ordinal() : this.ordinal() + 1;
 
         return enumValues[nextEnumIndex];
